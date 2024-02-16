@@ -225,8 +225,8 @@ loginButton.addEventListener('click', () => {
             // Uh oh.
                 msftLoginLogger.error('Unhandled error during login.', displayableError)
                 actualDisplayableError = {
-                    title: 'Erreur inconnue lors de la connexion',
-                    desc: 'Une erreur inconnue s\'est produite. Veuillez consulter la console pour plus de détails.'
+                    title: 'Error desconocido al conectar',
+                    desc: 'Un error desconocido a ocurrido. Consulte la consola para obtener más detalles.'
                 }
             }
 
@@ -271,8 +271,8 @@ loginButton.addEventListener('click', () => {
             // Uh oh.
                 msftLoginLogger.error('Unhandled error during login.', displayableError)
                 actualDisplayableError = {
-                    title: 'Erreur inconnue lors de la connexion',
-                    desc: 'Une erreur inconnue s\'est produite. Veuillez consulter la console pour plus de détails.'
+                    title: 'Error desconocido al conectar',
+                    desc: 'Un error desconocido a ocurrido. Consulte la consola para obtener más detalles.'
                 }
             }
 

@@ -28,9 +28,9 @@ window.eval = global.eval = function () {
 
 // Display warning when devtools window is opened.
 remote.getCurrentWebContents().on('devtools-opened', () => {
-    console.log('%cLa console est sombre et pleine de terreurs.', 'color: white; -webkit-text-stroke: 4px #a02d2a; font-size: 60px; font-weight: bold')
-    console.log('%cSi on vous a dit de coller quelque chose ici, vous êtes victime d\'une arnaque.', 'font-size: 16px')
-    console.log('%cÀ moins que vous ne sachiez exactement ce que vous faites, fermez cette fenêtre.', 'font-size: 16px')
+    console.log('%cLa consola es oscura y llena de terrores.', 'color: white; -webkit-text-stroke: 4px #a02d2a; font-size: 60px; font-weight: bold')
+    console.log('%cSi te dijeron que pagaras algo aquí, estás siendo estafado.', 'font-size: 16px')
+    console.log('%cA menos que sepa exactamente lo que está haciendo, cierre esta ventana.', 'font-size: 16px')
 })
 
 // Disable zoom, needed for darwin.
@@ -44,7 +44,7 @@ if(!isDev){
         switch(arg){
             case 'checking-for-update':
                 loggerAutoUpdater.log('Checking for update..')
-                settingsUpdateButtonStatus('Vérification des mises à jour', true, true)
+                settingsUpdateButtonStatus('Comprobando actualizaciones', true, true)
                 break
             case 'update-available':
                 loggerAutoUpdaterSuccess.log('New update available', info.version)
@@ -58,7 +58,7 @@ if(!isDev){
                 break
             case 'update-downloaded':
                 loggerAutoUpdaterSuccess.log('Update ' + info.version + ' ready to be installed.')
-                settingsUpdateButtonStatus('Redémarrer et mettre à jour', false, false, () => {
+                settingsUpdateButtonStatus('Reiniciar y actualizar', false, false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
                     }
@@ -67,7 +67,7 @@ if(!isDev){
                 break
             case 'update-not-available':
                 loggerAutoUpdater.log('No new update found.')
-                settingsUpdateButtonStatus('Vérifier les mises à jour')
+                settingsUpdateButtonStatus('Buscar actualizaciones')
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {

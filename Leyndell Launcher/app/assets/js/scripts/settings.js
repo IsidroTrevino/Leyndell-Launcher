@@ -394,8 +394,8 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGIN, (_, ...arguments_) => {
 
             // Unexpected error.
             setOverlayContent(
-                'Quelque chose s\'est mal passé',
-                'L\'authentification Microsoft a échoué. Veuillez réessayer.',
+                'Algo salió mal',
+                'La autenticación de Microsoft falló. Intentar otra vez.',
                 'OK'
             )
             setOverlayHandler(() => {
@@ -450,8 +450,8 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGIN, (_, ...arguments_) => {
                         // Uh oh.
                         msftLoginLogger.error('Unhandled error during login.', displayableError)
                         actualDisplayableError = {
-                            title: 'Erreur inconnue lors de la connexion',
-                            desc: 'Une erreur inconnue s\'est produite. Veuillez consulter la console pour plus de détails.'
+                            title: 'Error desconocido al conectar',
+                            desc: 'Un error desconocido a ocurrido. Consulte la consola para obtener más detalles.'
                         }
                     }
 
@@ -485,7 +485,7 @@ function bindAuthAccountSelect(){
                 }
             }
             val.setAttribute('selected', '')
-            val.innerHTML = 'Compte sélectionné &#10004;'
+            val.innerHTML = 'Cuenta seleccionada &#10004;'
             setSelectedAccount(val.closest('.settingsAuthAccount').getAttribute('uuid'))
         }
     })
@@ -503,10 +503,10 @@ function bindAuthAccountLogOut(){
             if(Object.keys(ConfigManager.getAuthAccounts()).length === 1){
                 isLastAccount = true
                 setOverlayContent(
-                    'Avertissement<br>Ceci est votre dernier compte',
-                    'Pour utiliser le lanceur, vous devez être connecté à au moins un compte. Vous devrez vous reconnecter après.<br><br>Voulez-vous vraiment vous déconnecter ?',
-                    'Je suis sûr',
-                    'Annuler'
+                    'Advertencia<br>Esta es tu última cuenta',
+                    'Para utilizar el iniciador, debe iniciar sesión en al menos una cuenta. Deberá iniciar sesión nuevamente después.<br><br>¿Está seguro de que desea cerrar sesión?',
+                    'Estoy seguro',
+                    'Cancelar'
                 )
                 setOverlayHandler(() => {
                     processLogOut(val, isLastAccount)
@@ -593,8 +593,8 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGOUT, (_, ...arguments_) => {
 
             // Unexpected error.
             setOverlayContent(
-                'Quelque chose s\'est mal passé',
-                'La déconnexion de Microsoft a échoué. Veuillez réessayer.',
+                'Algo salió mal',
+                'Error al cerrar sesión en Microsoft. Intentar otra vez.',
                 'OK'
             )
             setOverlayHandler(() => {
@@ -654,7 +654,7 @@ function refreshAuthAccountSelected(uuid){
             if(selBtn.hasAttribute('selected')){
                 selBtn.removeAttribute('selected')
             }
-            selBtn.innerHTML = 'Sélectionnez ce compte'
+            selBtn.innerHTML = 'Seleccione esta cuenta'
         }
     })
 }
@@ -697,7 +697,7 @@ function populateAuthAccounts(){
                     </div>
                 </div>
                 <div class="settingsAuthAccountActions">
-                    <button class="settingsAuthAccountSelect" ${selectedUUID === acc.uuid ? 'selected>Compte sélectionné &#10004;' : '>Sélectionnez ce compte'}</button>
+                    <button class="settingsAuthAccountSelect" ${selectedUUID === acc.uuid ? 'seleccionado>Cuenta seleccionada &#10004;' : '>Seleccione esta cuenta'}</button>
                     <div class="settingsAuthAccountWrapper">
                         <button class="settingsAuthAccountLogOut">Se déconnecter</button>
                     </div>
@@ -945,7 +945,7 @@ function bindDropinModsRemoveButton(){
             } else {
                 setOverlayContent(
                     `Échec de la suppression<br>Drop-in Mod ${fullName}`,
-                    'Assurez-vous que le fichier n\'est pas utilisé et réessayez.',
+                    'Asegúrese de que el archivo no esté en uso e inténtelo nuevamente.',
                     'Okay'
                 )
                 setOverlayHandler(null)
@@ -999,7 +999,7 @@ function saveDropinModConfiguration(){
                 DropinModUtil.toggleDropinMod(CACHE_SETTINGS_MODS_DIR, dropin.fullName, dropinUIEnabled).catch(err => {
                     if(!isOverlayVisible()){
                         setOverlayContent(
-                            'Impossible de basculer<br>un ou plusieurs Drop-in Mods',
+                            'No se puede cambiar<br>uno o más mods directos',
                             err.message,
                             'Okay'
                         )
@@ -1397,12 +1397,12 @@ function populateJavaExecDetails(execPath){
             console.log(v)
             const vendor = v.vendor != null ? ` (${v.vendor})` : ''
             if(v.version.major < 9) {
-                settingsJavaExecDetails.innerHTML = `Sélectionné: Java ${v.version.major} Update ${v.version.update} (x${v.arch})${vendor}`
+                settingsJavaExecDetails.innerHTML = `Seleccionando: Java ${v.version.major} Update ${v.version.update} (x${v.arch})${vendor}`
             } else if(v.version.major >= 17) {
-                settingsJavaExecDetails.innerHTML = `Sélectionné: Java ${v.version.major} Update ${v.version.build} (x${v.arch})${vendor}`
+                settingsJavaExecDetails.innerHTML = `Seleccionando: Java ${v.version.major} Update ${v.version.build} (x${v.arch})${vendor}`
             }
         } else {
-            settingsJavaExecDetails.innerHTML = 'Sélection invalide'
+            settingsJavaExecDetails.innerHTML = 'Seleccion invalida'
         }
     })
 }
@@ -1410,19 +1410,19 @@ function populateJavaExecDetails(execPath){
 function populateJavaReqDesc() {
     const mcVer = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer()).getMinecraftVersion()
     if(Util.mcVersionAtLeast('1.17', mcVer)) {
-        settingsJavaReqDesc.innerHTML = 'Nécessite Java 17 x64.'
+        settingsJavaReqDesc.innerHTML = 'Necesita Java 17 x64.'
     } else {
-        settingsJavaReqDesc.innerHTML = 'Nécessite Java 8 x64.'
+        settingsJavaReqDesc.innerHTML = 'Necesita Java 8 x64.'
     }
 }
 
 function populateJvmOptsLink() {
     const mcVer = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer()).getMinecraftVersion()
     if(Util.mcVersionAtLeast('1.17', mcVer)) {
-        settingsJvmOptsLink.innerHTML = 'Options disponibles pour Java 17 (HotSpot VM)'
+        settingsJvmOptsLink.innerHTML = 'Opciones disponibles para Java 17 (HotSpot VM)'
         settingsJvmOptsLink.href = 'https://docs.oracle.com/en/java/javase/17/docs/specs/man/java.html#extra-options-for-java'
     } else {
-        settingsJvmOptsLink.innerHTML = 'Options disponibles pour Java 8 (HotSpot VM)'
+        settingsJvmOptsLink.innerHTML = 'Opciones disponibles para Java 8 (HotSpot VM)'
         settingsJvmOptsLink.href = `https://docs.oracle.com/javase/8/docs/technotes/tools/${process.platform === 'win32' ? 'windows' : 'unix'}/java.html`
     }
 }
@@ -1518,7 +1518,7 @@ function populateReleaseNotes(){
         },
         timeout: 2500
     }).catch(err => {
-        settingsAboutChangelogText.innerHTML = 'Échec du chargement des notes de version.'
+        settingsAboutChangelogText.innerHTML = 'No se pudieron cargar las notas de la versión.'
     })
 }
 
@@ -1586,27 +1586,27 @@ function settingsUpdateButtonStatus(text, disabled = false, doAnimation = false,
  */
 function populateSettingsUpdateInformation(data){
     if(data != null){
-        settingsUpdateTitle.innerHTML = `Nouvelle ${isPrerelease(data.version) ? 'Pre-release' : 'Release'} Disponible`
+        settingsUpdateTitle.innerHTML = `Nueva ${isPrerelease(data.version) ? 'Pre-release' : 'Release'} Disponible`
         settingsUpdateChangelogCont.style.display = null
         settingsUpdateChangelogTitle.innerHTML = data.releaseName
         settingsUpdateChangelogText.innerHTML = data.releaseNotes
         populateVersionInformation(data.version, settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
         
         if(process.platform === 'darwin'){
-            settingsUpdateButtonStatus('Télécharger depuis GitHub<span style="font-size: 10px;color: gray;text-shadow: none !important;">Fermez le launcher et exécutez le .dmg pour effectuer la mise à jour.</span>', false, false, () => {
+            settingsUpdateButtonStatus('Descargar desde GitHub<span style="font-size: 10px;color: grey;text-shadow: none !important;">Cierra el iniciador y ejecuta el .dmg para realizar la actualización.</span>', false, false, () => {
                 shell.openExternal(data.darwindownload)
             })
         } else {
-            settingsUpdateButtonStatus('Téléchargement', true, true)
+            settingsUpdateButtonStatus('Descargar', true, true)
         }
     } else {
-        settingsUpdateTitle.innerHTML = 'Vous utilisez la dernière version'
+        settingsUpdateTitle.innerHTML = 'Estás usando la última versión'
         settingsUpdateChangelogCont.style.display = 'none'
         populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
-        settingsUpdateButtonStatus('Vérifier les mises à jour', false, false, () => {
+        settingsUpdateButtonStatus('Buscar actualizaciones', false, false, () => {
             if(!isDev){
                 ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
-                settingsUpdateButtonStatus('Vérification des mises à jour', true, true)
+                settingsUpdateButtonStatus('Comprobando actualizaciones', true, true)
             }
         })
     }

@@ -128,9 +128,9 @@ function showFatalStartupError(){
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'
             setOverlayContent(
-                'Erreur fatale: impossible de charger l\'index de distribution',
-                'Aucune connexion n\'a pu être établie avec nos serveurs pour télécharger l\'index de distribution. Aucune copie locale n\'était disponible pour le chargement. <br><br>L\'index de distribution est un fichier essentiel qui fournit les dernières informations sur le serveur. Le lanceur ne peut pas démarrer sans lui. Assurez-vous d\'être connecté à Internet et relancez l\'application.',
-                'Fermer'
+                'Error fatal: no se puede cargar el índice de distribución',
+                'No se pudo establecer conexión con nuestros servidores para descargar el índice de distribución. No había copias locales disponibles para cargar. <br><br>El índice de distribución es un archivo esencial que proporciona la información más reciente sobre el servidor. El lanzador no puede iniciarse sin él. Asegúrese de estar conectado a Internet y reinicie la aplicación.',
+                'Cerca'
             )
             setOverlayHandler(() => {
                 const window = remote.getCurrentWindow()
@@ -358,10 +358,10 @@ async function validateSelectedAccount(){
             ConfigManager.save()
             const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
             setOverlayContent(
-                'Échec de l\'actualisation de la connexion',
-                `Nous n'avons pas pu actualiser la connexion pour <strong>${selectedAcc.displayName}</strong>. Veuillez ${accLen > 0 ? 'sélectionnez un autre compte ou ' : ''} vous reconnecter.`,
-                'Connexion',
-                'Sélectionnez un autre compte'
+                'No se pudo actualizar la conexión',
+                `No pudimos actualizar la conexión de <strong>${selectedAcc.displayName}</strong>. Por favor ${accLen > 0 ? 'seleccione otra cuenta o ' : ''} reconectese.`,
+                'Conexión',
+                'Seleccione otra cuenta'
             )
             setOverlayHandler(() => {
 
